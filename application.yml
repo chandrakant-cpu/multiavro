@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: multi-avro-stream-consumer
+  main:
+    allow-bean-definition-overriding: true
+
+#from environment file on VM
+keyvault-name: ${KEYVAULT_NAME}
+
+#kafka configuration
+sasl-login-callback-handler-class: org.apache.kafka.common.security.oauthbearer.secured.OAuthBearerLoginCallbackHandler
+sasl-mechanism: OAUTHBEARER
+security-protocol: SASL_SSL
+key-deserializer-class: org.apache.kafka.common.serialization.StringDeserializer
+value-deserializer-class: org.apache.kafka.common.serialization.ByteArrayDeserializer
+allow-auto-create-topics: false
+enable-auto-commit: false
+fetch-max-bytes: 524288000
+max-partition-fetch-bytes: 52428800
+heartbeat-interval-ms: 40000
+max-poll-interval-ms: 1200000
+
+server:
+port: 9765
