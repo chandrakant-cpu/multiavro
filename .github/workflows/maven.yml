@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: read
+      contents: write
       security-events: write
 
     steps:
@@ -28,3 +28,5 @@ jobs:
 
       - name: Submit Dependency Snapshot
         uses: advanced-security/maven-dependency-submission-action@v1
+        with:
+          distribution: apache-maven-3.8.6 # Replace this with the appropriate Maven version you are using
