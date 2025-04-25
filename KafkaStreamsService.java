@@ -133,3 +133,4 @@ public class KafkaStreamsService {
 
     // Additional methods for row filtering, schema handling, etc.
 }
+
