@@ -1,4 +1,4 @@
-package com.multiavrostreamconsumer.model;
+package com.multiavrostreamconsumer;
 
 public class ErrorRecord {
     private final String record;

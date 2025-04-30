@@ -1,6 +1,4 @@
-package com.multiavrostreamconsumer.model;
-
-import scala.math.BigInt;
+package com.multiavrostreamconsumer;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,6 +15,8 @@ public class AvroConsumerConfig {
     BigDecimal maxRecords;
     List<String> columnFilters;
     Map<String, List<String>> rowFilters;
+    Long startTimestamp; // epoch millis
+    Long endTimestamp;   // epoch millis
 
     public Properties getKafkaConsumerProps() {
         return kafkaConsumerProps;
@@ -90,6 +90,22 @@ public class AvroConsumerConfig {
         this.rowFilters = rowFilters;
     }
 
+    public Long getStartTimestamp() {
+        return startTimestamp;
+    }
+
+    public void setStartTimestamp(Long startTimestamp) {
+        this.startTimestamp = startTimestamp;
+    }
+
+    public Long getEndTimestamp() {
+        return endTimestamp;
+    }
+
+    public void setEndTimestamp(Long endTimestamp) {
+        this.endTimestamp = endTimestamp;
+    }
+
     @Override
     public String toString() {
         return "ConsumerConfig{" +
@@ -102,6 +118,8 @@ public class AvroConsumerConfig {
                 ", columnFilters=" + columnFilters +
                 ", rowFilters=" + rowFilters +
                 ", maxRecords=" + maxRecords +
+                ", startTimestamp=" + startTimestamp +
+                ", endTimestamp=" + endTimestamp +
                 '}';
     }
 }

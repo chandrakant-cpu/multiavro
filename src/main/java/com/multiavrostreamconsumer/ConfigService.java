@@ -1,11 +1,10 @@
-package com.multiavrostreamconsumer.service;
-import com.att.eda.edac.event.payload.Avro;
+package com.multiavrostreamconsumer;
+
 import com.azure.identity.ClientSecretCredential;
 import com.azure.identity.ClientSecretCredentialBuilder;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobContainerClientBuilder;
-import com.multiavrostreamconsumer.model.AvroConsumerConfig;
 import org.apache.kafka.clients.CommonClientConfigs;
 import org.apache.kafka.common.config.SaslConfigs;
 import org.apache.kafka.common.config.SslConfigs;
@@ -78,6 +77,29 @@ public class ConfigService {
                         rowFilters.put(filters[0], filterValues);
                     });
                     consumerConfig.setRowFilters(rowFilters);
+
+                    // Time-based filtering (optional)
+                    if (config.containsKey("start_timestamp")) {
+                        Object start = config.get("start_timestamp");
+                        if (start != null && !start.toString().isEmpty()) {
+                            consumerConfig.setStartTimestamp(Long.parseLong(start.toString()));
+                        }
+                    }
+                    if (config.containsKey("end_timestamp")) {
+                        Object end = config.get("end_timestamp");
+                        if (end != null && !end.toString().isEmpty()) {
+                            consumerConfig.setEndTimestamp(Long.parseLong(end.toString()));
+                        }
+                    }
+                    // Override with system properties if set (from command-line)
+                    String sysStart = System.getProperty("multiavro.startTimestamp");
+                    if (sysStart != null && !sysStart.isEmpty()) {
+                        consumerConfig.setStartTimestamp(Long.parseLong(sysStart));
+                    }
+                    String sysEnd = System.getProperty("multiavro.endTimestamp");
+                    if (sysEnd != null && !sysEnd.isEmpty()) {
+                        consumerConfig.setEndTimestamp(Long.parseLong(sysEnd));
+                    }
 
                     return consumerConfig;
                 }).collect(Collectors.toList());

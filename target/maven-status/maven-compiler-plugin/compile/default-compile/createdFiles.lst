@@ -1,0 +1,12 @@
+com/multiavrostreamconsumer/ErrorRecord.class
+com/multiavrostreamconsumer/DatabaseService$1.class
+com/multiavrostreamconsumer/KafkaStreamsService.class
+com/multiavrostreamconsumer/KeyVaultService.class
+com/multiavrostreamconsumer/DatabaseService$3.class
+com/multiavrostreamconsumer/ConfigService.class
+com/multiavrostreamconsumer/AvroConstants.class
+com/multiavrostreamconsumer/MultiAvroStreamConsumerApplication.class
+com/multiavrostreamconsumer/DatabaseService$2.class
+com/multiavrostreamconsumer/AvroConsumerConfig.class
+com/multiavrostreamconsumer/DatabaseService.class
+com/multiavrostreamconsumer/DatabaseService$4.class
